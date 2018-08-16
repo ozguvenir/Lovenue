@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Lovenue</string>
+    <string name="app_slogan">Explore Relevant Venues</string>
+    <string name="permission_location_description">You can give permission to see nearby venues.</string>
+    <string name="gps_turn_on">Your GPS seems to be disabled, do you want to enable it to get your location well?</string>
 </resources>
