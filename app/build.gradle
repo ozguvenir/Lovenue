@@ -16,6 +16,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding {
+        // data binding
+        enabled = true
+    }
 }
 
 dependencies {
@@ -32,4 +36,13 @@ dependencies {
     // foursquare api call using Retrofit: A type-safe HTTP client for Android
     implementation "com.squareup.retrofit2:retrofit:2.3.0"
     implementation "com.squareup.retrofit2:converter-gson:2.3.0"
+
+    // Android Architecture Components
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+
+    // Recycler View
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+
+    // Float Action Button
+    implementation 'com.android.support:design:27.1.1'
 }

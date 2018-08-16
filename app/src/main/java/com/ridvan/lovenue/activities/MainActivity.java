@@ -1,17 +1,21 @@
 package com.ridvan.lovenue.activities;
 
 import android.Manifest;
-import android.content.Context;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.databinding.DataBindingUtil;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -19,6 +23,10 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.ridvan.lovenue.R;
+import com.ridvan.lovenue.adapter.VenueRecyclerViewAdapter;
+import com.ridvan.lovenue.databinding.ActivityMainBinding;
+import com.ridvan.lovenue.listener.RecyclerViewClickListener;
+import com.ridvan.lovenue.viewmodels.RelevantVenuesViewModel;
 
 import static com.ridvan.lovenue.constants.LovenueConstants.LOCATION_KEY;
 import static com.ridvan.lovenue.constants.LovenueConstants.MY_PERMISSIONS_REQUEST_LOCATION;
@@ -29,13 +37,52 @@ public class MainActivity extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationProviderClient;
     private LocationCallback locationCallback;
 
+    ActivityMainBinding binding;
+    RelevantVenuesViewModel viewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        viewModel = ViewModelProviders.of(this).get(RelevantVenuesViewModel.class);
+        binding.setViewModel(viewModel);
+        binding.setLifecycleOwner(this);
 
+        this.bindViewElements();
         this.updateValuesFromBundle(savedInstanceState);
         this.startLocationUpdates();
+    }
+
+    private void bindViewElements() {
+        final FloatingActionButton fab = binding.fab;
+
+        // preferred recycler view
+        VenueRecyclerViewAdapter adapter = new VenueRecyclerViewAdapter(viewModel.getItemsList().getValue(), new RecyclerViewClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                //TODO: Detail activity
+            }
+        });
+        binding.venueRecyclerView.setAdapter(adapter);
+        binding.venueRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // hide fab when scrolling
+        binding.venueRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0)
+                    fab.hide();
+                else if (dy < 0)
+                    fab.show();
+            }
+        });
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: Search activity
+            }
+        });
     }
 
     private void updateValuesFromBundle(Bundle savedInstanceState) {
@@ -70,14 +117,6 @@ public class MainActivity extends AppCompatActivity {
     public void onDestroy() {
         super.onDestroy();
         this.stopLocationUpdates();
-    }
-
-    public void checkGpsStatus() {
-        final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-        if (manager != null && !manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            showAlertDialog(getString(R.string.gps_turn_on));
-        }
     }
 
     protected void startLocationUpdates() {
@@ -129,8 +168,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (lastLocation != null) {
             //TODO post for new list
-        } else {
-            this.checkGpsStatus(); // TODO refactor where check needs
         }
     }
 
