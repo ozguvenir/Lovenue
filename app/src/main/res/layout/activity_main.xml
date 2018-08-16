@@ -17,7 +17,7 @@
         android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/venue_recycler_view"
+            android:id="@+id/venueRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical"
@@ -43,7 +43,7 @@
             android:layout_marginEnd="16dp"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/ic_launcher_background"
+            android:src="@drawable/ic_search"
             app:elevation="4dp" />
 
     </RelativeLayout>

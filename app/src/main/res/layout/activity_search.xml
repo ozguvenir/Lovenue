@@ -15,14 +15,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        <LinearLayout style="@style/GroupStyle">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/HeaderStyle"
                 android:text="@string/sort_by" />
 
             <RadioGroup
@@ -43,19 +39,14 @@
                     android:text="@string/relevance" />
             </RadioGroup>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            <LinearLayout style="@style/GroupStyle">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/HeaderStyle"
                     android:text="@string/filter" />
 
                 <Switch
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/TextStyle"
                     android:checked="@={ searchViewModel.nearMe }"
                     android:text="@string/near_me" />
 
@@ -65,8 +56,7 @@
                     android:visibility="@{ searchViewModel.nearMe ? View.GONE : View.VISIBLE }">
 
                     <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        style="@style/TextStyle"
                         android:hint="@string/enter_location"
                         android:maxLength="100"
                         android:text="@={ searchViewModel.locationInput }" />
@@ -79,8 +69,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/TextStyle"
                     android:hint="@string/radius"
                     android:inputType="number"
                     android:maxLength="10000"
@@ -92,12 +81,13 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/TextStyle"
                     android:hint="@string/section"
                     android:maxLength="20"
                     android:text="@={searchViewModel.sectionInput}" />
             </android.support.design.widget.TextInputLayout>
+
+            <View style="@style/Divider" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -105,8 +95,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/TextStyle"
                     android:text="@string/price_range" />
 
                 <LinearLayout
@@ -142,10 +131,10 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <View style="@style/Divider" />
 
             <Switch
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/TextStyle"
                 android:checked="@={ searchViewModel.openNow }"
                 android:text="@string/open_now" />
 
@@ -158,14 +147,12 @@
 
                 <Button
                     android:id="@+id/search_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/LovenueButtonStyle"
                     android:text="@string/search" />
 
                 <Button
                     android:id="@+id/cancel_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/LovenueButtonStyle"
                     android:text="@string/cancel" />
             </LinearLayout>
         </LinearLayout>

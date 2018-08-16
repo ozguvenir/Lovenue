@@ -8,4 +8,83 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--Group Style-->
+    <style name="GroupStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <!--Label Value Style-->
+    <style name="LabelValueStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingTop">@dimen/padding_top</item>
+        <item name="android:paddingBottom">@dimen/padding_bottom</item>
+        <item name="android:paddingRight">@dimen/padding_right</item>
+        <item name="android:paddingLeft">@dimen/padding_left</item>
+    </style>
+
+    <!--Header Syle-->
+    <style name="HeaderStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/padding_top</item>
+        <item name="android:paddingBottom">@dimen/padding_bottom</item>
+        <item name="android:paddingRight">@dimen/padding_right</item>
+        <item name="android:paddingLeft">@dimen/padding_left</item>
+        <item name="android:background">@color/colorGrey</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <!--Text Syle-->
+    <style name="TextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/padding_top</item>
+        <item name="android:paddingBottom">@dimen/padding_bottom</item>
+        <item name="android:paddingRight">@dimen/padding_right</item>
+        <item name="android:paddingLeft">@dimen/padding_left</item>
+        <item name="android:textColor">@color/colorTextGrey</item>
+    </style>
+
+    <!--List Item Syle-->
+    <style name="ListItemStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:drawableEnd">@drawable/ic_arrow</item>
+        <item name="android:drawableRight">@drawable/ic_arrow</item>
+    </style>
+
+    <!--Button Style-->
+    <style name="LovenueButtonStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:textColor">@color/colorGrey</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:height">40dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:maxHeight">40dp</item>
+        <item name="android:layout_marginBottom">3dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="borderWidth">0dp</item>
+    </style>
+
+    <!--Divider-->
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/colorDarkGray</item>
+    </style>
 </resources>

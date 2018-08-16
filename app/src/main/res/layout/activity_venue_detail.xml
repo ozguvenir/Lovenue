@@ -16,46 +16,39 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        <LinearLayout style="@style/GroupStyle">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            <LinearLayout style="@style/GroupStyle">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/HeaderStyle"
                     android:text="@string/venue_information" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/TextStyle"
                     android:text="@={ detailViewModel.name }"
-                    android:textColor="#000000"
+                    android:textColor="@color/colorBlack"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/TextStyle"
                     android:text="@={ detailViewModel.category }"
+                    android:textColor="@color/colorDarkGray"
                     android:textSize="16sp"
                     android:textStyle="italic" />
 
+                <View style="@style/Divider" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/TextStyle"
                     android:text="@={ detailViewModel.description }"
+                    android:textColor="@color/colorDarkGray"
                     android:textSize="14sp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <View style="@style/Divider" />
+
+                <LinearLayout style="@style/LabelValueStyle">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -73,9 +66,7 @@
                         android:textSize="24sp" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <LinearLayout style="@style/LabelValueStyle">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -89,24 +80,19 @@
                         android:layout_weight="1"
                         android:gravity="right|center_vertical"
                         android:singleLine="true"
-                        android:text="@={ detailViewModel.price }" />
+                        android:text="@={ detailViewModel.price }"
+                        android:textColor="@color/colorBlack" />
                 </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            <LinearLayout style="@style/GroupStyle">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/HeaderStyle"
                     android:text="@string/contact_info" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <LinearLayout style="@style/LabelValueStyle">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -123,9 +109,7 @@
                         android:text="@={ detailViewModel.address }" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <LinearLayout style="@style/LabelValueStyle">
 
                     <TextView
                         android:layout_width="wrap_content"
