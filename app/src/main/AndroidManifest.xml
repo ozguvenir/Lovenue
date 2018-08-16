@@ -21,4 +21,6 @@
 
     <!--Location Permissions, Allows an app to access precise location-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!--Foursquare API need INTERNET permission-->
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

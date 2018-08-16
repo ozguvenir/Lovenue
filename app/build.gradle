@@ -28,4 +28,8 @@ dependencies {
 
     // google play services location implementation
     implementation "com.google.android.gms:play-services-location:15.0.1"
+
+    // foursquare api call using Retrofit: A type-safe HTTP client for Android
+    implementation "com.squareup.retrofit2:retrofit:2.3.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.3.0"
 }

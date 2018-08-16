@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
         this.stopLocationUpdates();
     }
 
-
     @Override
     public void onDestroy() {
         super.onDestroy();
