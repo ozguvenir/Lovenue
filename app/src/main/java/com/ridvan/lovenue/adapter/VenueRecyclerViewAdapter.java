@@ -26,7 +26,6 @@ public class VenueRecyclerViewAdapter extends RecyclerView.Adapter<VenueRecycler
         this.listener = listener;
     }
 
-
     @NonNull
     @Override
     public VenueViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -52,7 +51,7 @@ public class VenueRecyclerViewAdapter extends RecyclerView.Adapter<VenueRecycler
         TextView category = holder.category;
         TextView distance = holder.distance;
         TextView summary = holder.summary;
-
+        //TODO
         companyName.setText(venue.getVenue().getName());
         category.setText(venue.getVenue().getCategories().get(0).getPluralName());
         distance.setText("20m");
@@ -69,7 +68,6 @@ public class VenueRecyclerViewAdapter extends RecyclerView.Adapter<VenueRecycler
         TextView category;
         TextView distance;
         TextView summary;
-
 
         public VenueViewHolder(View view) {
             super(view);

@@ -11,6 +11,9 @@ public class RelevantVenuesRequestModel extends BaseRequestModel {
     private String openNow;
     private String sortByDistance;
 
+    public RelevantVenuesRequestModel() {
+    }
+
     public RelevantVenuesRequestModel(String ll, String near, String radius, String section, String openNow, String sortByDistance) {
         this.ll = ll;
         this.near = near;

@@ -4,4 +4,23 @@
     <string name="permission_location_description">You can give permission to see nearby venues.</string>
     <string name="gps_turn_on">Your GPS seems to be disabled, do you want to enable it to get your location well?</string>
     <string name="no_venues">There is no venues to show, you can search with filters via search button.</string>
+    <string name="sort_by">SORT BY</string>
+    <string name="relevance">Relevance</string>
+    <string name="distance">Distance</string>
+    <string name="filter">FILTER</string>
+    <string name="location">LOCATION</string>
+    <string name="enter_location">Location</string>
+    <string name="near_me">Near Me</string>
+    <string name="radius">Radius (meters)</string>
+    <string name="section">Section (Food, Drinks, Coffee)</string>
+    <string name="price_range">Price (1 is cheapest and 4 is most expensive)</string>
+    <string name="open_now">Open Now</string>
+    <string name="search">Search</string>
+    <string name="cancel">Cancel</string>
+    <string name="venue_information">VENUE INFORMATION</string>
+    <string name="address">Address</string>
+    <string name="contact_info">CONTACT INFORMATION</string>
+    <string name="rating">Rating</string>
+    <string name="price">Price Range</string>
+    <string name="phone">Phone</string>
 </resources>
