@@ -148,12 +148,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-//        String isSearch = getIntent().getStringExtra("search");
-//        if ("fromsearch".equals(isSearch)) {
-//            viewModel.getRelevantVenuesSearchResult(lastLocation != null ? lastLocation.getLatitude() + "," + lastLocation.getLongitude() : null);
-//            stopLocationUpdates();
-
-        startLocationUpdates();
+        this.startLocationUpdates();
     }
 
     @Override

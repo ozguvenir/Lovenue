@@ -15,13 +15,14 @@ import com.ridvan.lovenue.viewmodels.VenueDetailViewModel;
 public class VenueDetailActivity extends AppCompatActivity {
 
     ActivityVenueDetailBinding binding;
+    VenueDetailViewModel venueDetailViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_venue_detail);
 
-        final VenueDetailViewModel venueDetailViewModel = ViewModelProviders.of(this).get(VenueDetailViewModel.class);
+        venueDetailViewModel = ViewModelProviders.of(this).get(VenueDetailViewModel.class);
         binding.setDetailViewModel(venueDetailViewModel);
         binding.setLifecycleOwner(this);
 

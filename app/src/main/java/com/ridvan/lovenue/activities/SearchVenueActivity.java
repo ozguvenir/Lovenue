@@ -13,7 +13,7 @@ import com.ridvan.lovenue.R;
 import com.ridvan.lovenue.constants.LovenueConstants;
 import com.ridvan.lovenue.databinding.ActivitySearchBinding;
 import com.ridvan.lovenue.models.model.Items;
-import com.ridvan.lovenue.viewmodels.RelevantVenuesViewModel;
+import com.ridvan.lovenue.viewmodels.SearchVenueViewModel;
 
 import java.util.List;
 
@@ -23,6 +23,7 @@ import java.util.List;
 public class SearchVenueActivity extends AppCompatActivity {
 
     ActivitySearchBinding binding;
+    SearchVenueViewModel searchViewModel;
     private String ll;
 
     @Override
@@ -31,7 +32,7 @@ public class SearchVenueActivity extends AppCompatActivity {
         // Inflate view and obtain an instance of the binding class
         binding = DataBindingUtil.setContentView(this, R.layout.activity_search);
 
-        final RelevantVenuesViewModel searchViewModel = ViewModelProviders.of(this).get(RelevantVenuesViewModel.class);
+        searchViewModel = ViewModelProviders.of(this).get(SearchVenueViewModel.class);
         binding.setSearchViewModel(searchViewModel);
         binding.setLifecycleOwner(this);
 
@@ -43,17 +44,16 @@ public class SearchVenueActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable List<Items> items) {
                 Intent intent = new Intent(SearchVenueActivity.this, MainActivity.class);
+                intent.putExtra("search", "fromsearch");
                 startActivity(intent);
+                finish();
             }
         });
 
         binding.searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SearchVenueActivity.this, MainActivity.class);
-                intent.putExtra("search", "fromsearch");
-                startActivity(intent);
-                finish();
+                searchViewModel.getRelevantVenuesSearchResult(ll);
             }
         });
 
