@@ -53,6 +53,7 @@ public class SearchVenueActivity extends AppCompatActivity {
                 Intent intent = new Intent(SearchVenueActivity.this, MainActivity.class);
                 intent.putExtra("search", "fromsearch");
                 startActivity(intent);
+                finish();
             }
         });
 
