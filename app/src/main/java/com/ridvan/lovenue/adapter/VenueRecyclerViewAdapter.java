@@ -45,17 +45,21 @@ public class VenueRecyclerViewAdapter extends RecyclerView.Adapter<VenueRecycler
 
     @Override
     public void onBindViewHolder(@NonNull VenueViewHolder holder, int position) {
-        Items venue = itemsList.get(position);
+        Items item = itemsList.get(position);
 
         TextView companyName = holder.companyName;
         TextView category = holder.category;
         TextView distance = holder.distance;
-        TextView summary = holder.summary;
-        //TODO
-        companyName.setText(venue.getVenue().getName());
-        category.setText(venue.getVenue().getCategories().get(0).getPluralName());
-        distance.setText("20m");
-        summary.setText("sumsumsum");
+
+        if (item != null && item.getVenue() != null) {
+            String companyValue = item.getVenue().getName() != null ? item.getVenue().getName() : "Unknown Company";
+            String categoryValue = (item.getVenue().getCategories() != null && item.getVenue().getCategories().get(0) != null) ? item.getVenue().getCategories().get(0).getPluralName() : "Unknown Category";
+            String distanceValue = (item.getVenue().getLocation() != null && item.getVenue().getLocation().getDistance() != null) ? item.getVenue().getLocation().getDistance().toString() + " meter(s)" : "Unknown distance";
+
+            companyName.setText(companyValue);
+            category.setText(categoryValue);
+            distance.setText(distanceValue);
+        }
     }
 
     @Override
@@ -67,10 +71,12 @@ public class VenueRecyclerViewAdapter extends RecyclerView.Adapter<VenueRecycler
         TextView companyName;
         TextView category;
         TextView distance;
-        TextView summary;
 
         public VenueViewHolder(View view) {
             super(view);
+            companyName = view.findViewById(R.id.nameTextViewID);
+            category = view.findViewById(R.id.categoryTextViewID);
+            distance = view.findViewById(R.id.distanceTextViewID);
         }
     }
 }

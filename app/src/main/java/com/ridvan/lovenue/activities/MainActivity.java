@@ -1,6 +1,7 @@
 package com.ridvan.lovenue.activities;
 
 import android.Manifest;
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.databinding.DataBindingUtil;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
@@ -26,8 +28,15 @@ import com.ridvan.lovenue.R;
 import com.ridvan.lovenue.adapter.VenueRecyclerViewAdapter;
 import com.ridvan.lovenue.databinding.ActivityMainBinding;
 import com.ridvan.lovenue.listener.RecyclerViewClickListener;
+import com.ridvan.lovenue.models.model.Items;
+import com.ridvan.lovenue.models.model.Venue;
+import com.ridvan.lovenue.models.request.RelevantVenuesRequestModel;
+import com.ridvan.lovenue.models.response.VenueDetailResponseModel;
 import com.ridvan.lovenue.viewmodels.RelevantVenuesViewModel;
 
+import java.util.List;
+
+import static com.ridvan.lovenue.constants.LovenueConstants.LATLONG;
 import static com.ridvan.lovenue.constants.LovenueConstants.LOCATION_KEY;
 import static com.ridvan.lovenue.constants.LovenueConstants.MY_PERMISSIONS_REQUEST_LOCATION;
 
@@ -39,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
     RelevantVenuesViewModel viewModel;
+    Venue venueDetail;
+    List<Items> itemsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +58,32 @@ public class MainActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this).get(RelevantVenuesViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
+
+        viewModel.getItemsList().observe(this, new Observer<List<Items>>() {
+            @Override
+            public void onChanged(@Nullable List<Items> items) {
+                VenueRecyclerViewAdapter adapter = new VenueRecyclerViewAdapter(viewModel.getItemsList().getValue(), new RecyclerViewClickListener() {
+                    @Override
+                    public void onClick(View view, int position) {
+                        Intent intent = new Intent(MainActivity.this, VenueDetailActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                binding.venueRecyclerView.setAdapter(adapter);
+            }
+        });
+
+        viewModel.getVenueDetailData().observe(this, new Observer<VenueDetailResponseModel>() {
+            @Override
+            public void onChanged(@Nullable VenueDetailResponseModel venueDetailResponseModel) {
+                // observe detail post
+                if (venueDetailResponseModel != null && venueDetailResponseModel.getResponse() != null) {
+                    venueDetail = venueDetailResponseModel.getResponse().getVenue();
+                } else {
+                    venueDetail = null;
+                }
+            }
+        });
 
         this.bindViewElements();
         this.updateValuesFromBundle(savedInstanceState);
@@ -60,7 +97,8 @@ public class MainActivity extends AppCompatActivity {
         VenueRecyclerViewAdapter adapter = new VenueRecyclerViewAdapter(viewModel.getItemsList().getValue(), new RecyclerViewClickListener() {
             @Override
             public void onClick(View view, int position) {
-                //TODO: Detail activity
+                Intent intent = new Intent(MainActivity.this, VenueDetailActivity.class);
+                startActivity(intent);
             }
         });
         binding.venueRecyclerView.setAdapter(adapter);
@@ -80,7 +118,10 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Search activity
+                Intent intent = new Intent(MainActivity.this, SearchVenueActivity.class);
+                String ll = lastLocation != null ? lastLocation.getLatitude() + "," + lastLocation.getLongitude() : null;
+                intent.putExtra(LATLONG, ll);
+                startActivity(intent);
             }
         });
     }
@@ -167,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
         this.lastLocation = location;
 
         if (lastLocation != null) {
-            //TODO post for new list
+            viewModel.getRelevantVenues(new RelevantVenuesRequestModel(lastLocation.getLatitude() + "," + lastLocation.getLongitude(), null, null, null, null, null, null));
         }
     }
 

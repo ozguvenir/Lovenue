@@ -40,14 +40,6 @@
 
                 <View style="@style/Divider" />
 
-                <TextView
-                    style="@style/TextStyle"
-                    android:text="@={ detailViewModel.description }"
-                    android:textColor="@color/colorDarkGray"
-                    android:textSize="14sp" />
-
-                <View style="@style/Divider" />
-
                 <LinearLayout style="@style/LabelValueStyle">
 
                     <TextView
@@ -64,24 +56,6 @@
                         android:singleLine="true"
                         android:text="@={ detailViewModel.rating }"
                         android:textSize="24sp" />
-                </LinearLayout>
-
-                <LinearLayout style="@style/LabelValueStyle">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/price"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="right|center_vertical"
-                        android:singleLine="true"
-                        android:text="@={ detailViewModel.price }"
-                        android:textColor="@color/colorBlack" />
                 </LinearLayout>
 
             </LinearLayout>

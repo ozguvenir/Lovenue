@@ -8,19 +8,29 @@ public class RelevantVenuesRequestModel extends BaseRequestModel {
     private String near;
     private String radius;
     private String section;
+    private String price;
     private String openNow;
     private String sortByDistance;
 
     public RelevantVenuesRequestModel() {
     }
 
-    public RelevantVenuesRequestModel(String ll, String near, String radius, String section, String openNow, String sortByDistance) {
+    public RelevantVenuesRequestModel(String ll, String near, String radius, String section, String price, String openNow, String sortByDistance) {
         this.ll = ll;
         this.near = near;
         this.radius = radius;
         this.section = section;
+        this.price = price;
         this.openNow = openNow;
         this.sortByDistance = sortByDistance;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public String getLl() {

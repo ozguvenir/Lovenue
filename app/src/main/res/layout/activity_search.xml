@@ -48,12 +48,13 @@
                 <Switch
                     style="@style/TextStyle"
                     android:checked="@={ searchViewModel.nearMe }"
-                    android:text="@string/near_me" />
+                    android:text="@string/near_me"
+                    android:visibility="@{ searchViewModel.nearMeVisibility ? View.VISIBLE : View.GONE }" />
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="@{ searchViewModel.nearMe ? View.GONE : View.VISIBLE }">
+                    android:visibility="@{ (searchViewModel.nearMe || searchViewModel.nearMeVisibility) ? View.GONE : View.VISIBLE }">
 
                     <EditText
                         style="@style/TextStyle"

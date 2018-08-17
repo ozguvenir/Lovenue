@@ -5,8 +5,7 @@
     android:background="?android:attr/selectableItemBackground">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/ListItemStyle"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -26,36 +25,26 @@
                     android:id="@+id/nameTextViewID"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Company Name"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="16dp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/infoTextViewID"
+                    android:id="@+id/categoryTextViewID"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Category"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="12dp"
+                    android:textSize="12sp"
                     android:textStyle="italic" />
 
                 <TextView
                     android:id="@+id/distanceTextViewID"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Distance"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="10dp" />
-            </LinearLayout>
+                    android:textColor="@color/colorDarkGray"
+                    android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/summaryTextViewID"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="SummarySummary Summary SummarySummary Summary SummarySummary SummarySummarySummarySummarySummary"
-                android:textSize="8dp" />
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -63,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/common_google_signin_btn_icon_dark" />
+            android:src="@drawable/ic_arrow" />
     </LinearLayout>
 
 </LinearLayout>
