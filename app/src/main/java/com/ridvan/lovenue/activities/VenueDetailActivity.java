@@ -24,5 +24,13 @@ public class VenueDetailActivity extends AppCompatActivity {
         final VenueDetailViewModel venueDetailViewModel = ViewModelProviders.of(this).get(VenueDetailViewModel.class);
         binding.setDetailViewModel(venueDetailViewModel);
         binding.setLifecycleOwner(this);
+
+        String name = getIntent().getStringExtra("name");
+        String category = getIntent().getStringExtra("category");
+        String rating = getIntent().getStringExtra("rating");
+        String address = getIntent().getStringExtra("address");
+        String phone = getIntent().getStringExtra("phone");
+
+        venueDetailViewModel.setDetail(name, category, rating, address, phone);
     }
 }

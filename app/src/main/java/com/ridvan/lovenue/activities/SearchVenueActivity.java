@@ -13,7 +13,7 @@ import com.ridvan.lovenue.R;
 import com.ridvan.lovenue.constants.LovenueConstants;
 import com.ridvan.lovenue.databinding.ActivitySearchBinding;
 import com.ridvan.lovenue.models.model.Items;
-import com.ridvan.lovenue.viewmodels.SearchVenueViewModel;
+import com.ridvan.lovenue.viewmodels.RelevantVenuesViewModel;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class SearchVenueActivity extends AppCompatActivity {
         // Inflate view and obtain an instance of the binding class
         binding = DataBindingUtil.setContentView(this, R.layout.activity_search);
 
-        final SearchVenueViewModel searchViewModel = ViewModelProviders.of(this).get(SearchVenueViewModel.class);
+        final RelevantVenuesViewModel searchViewModel = ViewModelProviders.of(this).get(RelevantVenuesViewModel.class);
         binding.setSearchViewModel(searchViewModel);
         binding.setLifecycleOwner(this);
 
@@ -50,7 +50,9 @@ public class SearchVenueActivity extends AppCompatActivity {
         binding.searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                searchViewModel.getRelevantVenuesSearchResult(ll);
+                Intent intent = new Intent(SearchVenueActivity.this, MainActivity.class);
+                intent.putExtra("search", "fromsearch");
+                startActivity(intent);
             }
         });
 

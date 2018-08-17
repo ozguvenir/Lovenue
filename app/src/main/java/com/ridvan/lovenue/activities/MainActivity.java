@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     RelevantVenuesViewModel viewModel;
     Venue venueDetail;
-    List<Items> itemsList;
+    VenueRecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,14 +62,7 @@ public class MainActivity extends AppCompatActivity {
         viewModel.getItemsList().observe(this, new Observer<List<Items>>() {
             @Override
             public void onChanged(@Nullable List<Items> items) {
-                VenueRecyclerViewAdapter adapter = new VenueRecyclerViewAdapter(viewModel.getItemsList().getValue(), new RecyclerViewClickListener() {
-                    @Override
-                    public void onClick(View view, int position) {
-                        Intent intent = new Intent(MainActivity.this, VenueDetailActivity.class);
-                        startActivity(intent);
-                    }
-                });
-                binding.venueRecyclerView.setAdapter(adapter);
+                bindViewElements();
             }
         });
 
@@ -79,6 +72,15 @@ public class MainActivity extends AppCompatActivity {
                 // observe detail post
                 if (venueDetailResponseModel != null && venueDetailResponseModel.getResponse() != null) {
                     venueDetail = venueDetailResponseModel.getResponse().getVenue();
+                    Intent intent = new Intent(MainActivity.this, VenueDetailActivity.class);
+
+                    intent.putExtra("name", venueDetail.getName() != null ? venueDetail.getName() : "Unknown Company");
+                    intent.putExtra("category", venueDetail.getCategories() != null ? venueDetail.getCategories().get(0).getPluralName() : "Unknown Category");
+                    intent.putExtra("rating", venueDetail.getRating() != null ? venueDetail.getRating() : "?");
+                    intent.putExtra("address", venueDetail.getLocation() != null ? venueDetail.getLocation().getAddress() : "");
+                    intent.putExtra("phone", venueDetail.getContact() != null ? venueDetail.getContact().getFormattedPhone() : "");
+
+                    startActivity(intent);
                 } else {
                     venueDetail = null;
                 }
@@ -94,11 +96,12 @@ public class MainActivity extends AppCompatActivity {
         final FloatingActionButton fab = binding.fab;
 
         // preferred recycler view
-        VenueRecyclerViewAdapter adapter = new VenueRecyclerViewAdapter(viewModel.getItemsList().getValue(), new RecyclerViewClickListener() {
+        adapter = new VenueRecyclerViewAdapter(viewModel.getItemsList().getValue(), new RecyclerViewClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Intent intent = new Intent(MainActivity.this, VenueDetailActivity.class);
-                startActivity(intent);
+                if (viewModel.getItemsList().getValue() != null && viewModel.getItemsList().getValue().get(0) != null && viewModel.getItemsList().getValue().get(0).getVenue() != null) {
+                    viewModel.getVenueDetail(viewModel.getItemsList().getValue().get(position).getVenue().getId());
+                }
             }
         });
         binding.venueRecyclerView.setAdapter(adapter);
@@ -145,7 +148,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        startLocationUpdates();
+        String name = getIntent().getStringExtra("search");
+        if ("fromsearch".equals(name)) {
+            viewModel.getRelevantVenuesSearchResult(lastLocation != null ? lastLocation.getLatitude() + "," + lastLocation.getLongitude() : null);
+            stopLocationUpdates();
+        } else {
+            startLocationUpdates();
+        }
     }
 
     @Override

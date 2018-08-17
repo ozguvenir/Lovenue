@@ -7,7 +7,7 @@
 
         <variable
             name="searchViewModel"
-            type="com.ridvan.lovenue.viewmodels.SearchVenueViewModel" />
+            type="com.ridvan.lovenue.viewmodels.RelevantVenuesViewModel" />
 
     </data>
 
@@ -54,7 +54,7 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="@{ (searchViewModel.nearMe || searchViewModel.nearMeVisibility) ? View.GONE : View.VISIBLE }">
+                    android:visibility="@{ searchViewModel.nearMe ? View.GONE : View.VISIBLE }">
 
                     <EditText
                         style="@style/TextStyle"
