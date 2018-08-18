@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.ridvan.lovenue.R;
+import com.ridvan.lovenue.constants.LovenueConstants;
 import com.ridvan.lovenue.databinding.ActivityVenueDetailBinding;
 import com.ridvan.lovenue.viewmodels.VenueDetailViewModel;
 
@@ -26,11 +27,11 @@ public class VenueDetailActivity extends AppCompatActivity {
         binding.setDetailViewModel(venueDetailViewModel);
         binding.setLifecycleOwner(this);
 
-        String name = getIntent().getStringExtra("name");
-        String category = getIntent().getStringExtra("category");
-        String rating = getIntent().getStringExtra("rating");
-        String address = getIntent().getStringExtra("address");
-        String phone = getIntent().getStringExtra("phone");
+        String name = getIntent().getStringExtra(LovenueConstants.NAME);
+        String category = getIntent().getStringExtra(LovenueConstants.CATEGORY);
+        String rating = getIntent().getStringExtra(LovenueConstants.RATING);
+        String address = getIntent().getStringExtra(LovenueConstants.ADDRESS);
+        String phone = getIntent().getStringExtra(LovenueConstants.PHONE);
 
         venueDetailViewModel.setDetail(name, category, rating, address, phone);
     }

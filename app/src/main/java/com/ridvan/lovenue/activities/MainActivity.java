@@ -26,6 +26,7 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.ridvan.lovenue.R;
 import com.ridvan.lovenue.adapter.VenueRecyclerViewAdapter;
+import com.ridvan.lovenue.constants.LovenueConstants;
 import com.ridvan.lovenue.databinding.ActivityMainBinding;
 import com.ridvan.lovenue.listener.RecyclerViewClickListener;
 import com.ridvan.lovenue.models.model.Items;
@@ -36,7 +37,6 @@ import com.ridvan.lovenue.viewmodels.RelevantVenuesViewModel;
 
 import java.util.List;
 
-import static com.ridvan.lovenue.constants.LovenueConstants.LATLONG;
 import static com.ridvan.lovenue.constants.LovenueConstants.LOCATION_KEY;
 import static com.ridvan.lovenue.constants.LovenueConstants.MY_PERMISSIONS_REQUEST_LOCATION;
 
@@ -46,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationProviderClient;
     private LocationCallback locationCallback;
 
-    ActivityMainBinding binding;
+    private ActivityMainBinding binding;
+    private Venue venueDetail;
+    private FloatingActionButton fab;
     RelevantVenuesViewModel viewModel;
-    Venue venueDetail;
-    VenueRecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,11 +74,11 @@ public class MainActivity extends AppCompatActivity {
                     venueDetail = venueDetailResponseModel.getResponse().getVenue();
                     Intent intent = new Intent(MainActivity.this, VenueDetailActivity.class);
 
-                    intent.putExtra("name", venueDetail.getName() != null ? venueDetail.getName() : "Unknown Company");
-                    intent.putExtra("category", venueDetail.getCategories() != null ? venueDetail.getCategories().get(0).getPluralName() : "Unknown Category");
-                    intent.putExtra("rating", venueDetail.getRating() != null ? venueDetail.getRating() : "?");
-                    intent.putExtra("address", venueDetail.getLocation() != null ? venueDetail.getLocation().getAddress() : "");
-                    intent.putExtra("phone", venueDetail.getContact() != null ? venueDetail.getContact().getFormattedPhone() : "");
+                    intent.putExtra(LovenueConstants.NAME, venueDetail.getName() != null ? venueDetail.getName() : "Unknown Company");
+                    intent.putExtra(LovenueConstants.CATEGORY, venueDetail.getCategories() != null ? venueDetail.getCategories().get(0).getPluralName() : "Unknown Category");
+                    intent.putExtra(LovenueConstants.RATING, venueDetail.getRating() != null ? venueDetail.getRating() : "?");
+                    intent.putExtra(LovenueConstants.ADDRESS, venueDetail.getLocation() != null ? venueDetail.getLocation().getAddress() : "");
+                    intent.putExtra(LovenueConstants.PHONE, venueDetail.getContact() != null ? venueDetail.getContact().getFormattedPhone() : "");
 
                     startActivity(intent);
                 } else {
@@ -93,10 +93,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bindViewElements() {
-        final FloatingActionButton fab = binding.fab;
+        fab = binding.fab;
 
         // preferred recycler view
-        adapter = new VenueRecyclerViewAdapter(viewModel.getItemsList().getValue(), new RecyclerViewClickListener() {
+        VenueRecyclerViewAdapter adapter = new VenueRecyclerViewAdapter(viewModel.getItemsList().getValue(), new RecyclerViewClickListener() {
             @Override
             public void onClick(View view, int position) {
                 if (viewModel.getItemsList().getValue() != null && viewModel.getItemsList().getValue().get(0) != null && viewModel.getItemsList().getValue().get(0).getVenue() != null) {
@@ -121,10 +121,11 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SearchVenueActivity.class);
-                String ll = lastLocation != null ? lastLocation.getLatitude() + "," + lastLocation.getLongitude() : null;
-                intent.putExtra(LATLONG, ll);
-                startActivity(intent);
+                stopLocationUpdates();
+                getFragmentManager().beginTransaction()
+                        .add(R.id.content_frame, new SearchVenueFragment(lastLocation.getLatitude() + "," + lastLocation.getLongitude()))
+                        .addToBackStack(MainActivity.class.getSimpleName())
+                        .commit();
             }
         });
     }
@@ -143,12 +144,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         outState.putParcelable(LOCATION_KEY, lastLocation);
         super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        this.startLocationUpdates();
     }
 
     @Override
@@ -228,11 +223,11 @@ public class MainActivity extends AppCompatActivity {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(message)
                 .setCancelable(true)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialog, final int id) {
                         startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
                     }
-                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             public void onClick(final DialogInterface dialog, final int id) {
                 dialog.cancel();
             }

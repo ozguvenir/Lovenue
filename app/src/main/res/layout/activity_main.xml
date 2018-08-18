@@ -12,39 +12,47 @@
 
     </data>
 
-    <RelativeLayout
+    <FrameLayout
+        android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/venueRecyclerView"
+        <RelativeLayout
+
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            android:visibility="@{ (viewModel.itemsList == null || viewModel.itemsList.size() == 0) ? View.GONE : View.VISIBLE }"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/no_venues"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold"
-            android:visibility="@{ (viewModel.itemsList == null || viewModel.itemsList.size() == 0) ? View.VISIBLE : View.GONE }" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/venueRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+                android:visibility="@{ (viewModel.itemsList == null || viewModel.itemsList.size() == 0) ? View.GONE : View.VISIBLE }"
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="16dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:src="@drawable/ic_search"
-            app:elevation="4dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/no_venues"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:visibility="@{ (viewModel.itemsList == null || viewModel.itemsList.size() == 0) ? View.VISIBLE : View.GONE }" />
 
-    </RelativeLayout>
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_search"
+                android:visibility="@{ viewModel.isSearchFragmentVisible ? View.GONE : View.VISIBLE }"
+                app:elevation="4dp" />
+
+        </RelativeLayout>
+    </FrameLayout>
 </layout>
