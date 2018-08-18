@@ -28,6 +28,7 @@ import com.ridvan.lovenue.R;
 import com.ridvan.lovenue.adapter.VenueRecyclerViewAdapter;
 import com.ridvan.lovenue.constants.LovenueConstants;
 import com.ridvan.lovenue.databinding.ActivityMainBinding;
+import com.ridvan.lovenue.fragments.SearchVenueFragment;
 import com.ridvan.lovenue.listener.RecyclerViewClickListener;
 import com.ridvan.lovenue.models.model.Items;
 import com.ridvan.lovenue.models.model.Venue;
@@ -123,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 stopLocationUpdates();
                 getFragmentManager().beginTransaction()
-                        .add(R.id.content_frame, new SearchVenueFragment(lastLocation.getLatitude() + "," + lastLocation.getLongitude()))
+                        .add(R.id.content_frame, new SearchVenueFragment(lastLocation != null ? lastLocation.getLatitude() + "," + lastLocation.getLongitude() : null))
                         .addToBackStack(MainActivity.class.getSimpleName())
                         .commit();
             }

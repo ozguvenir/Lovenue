@@ -19,8 +19,7 @@ public class LovenueConstants {
     public static final String NOF_RESULT_LIMIT = "40";
     @SuppressLint("SimpleDateFormat")
     public static final String FOURSQUARE_REQUEST_VERSION = new SimpleDateFormat("yyyyMMdd").format(new Date());
-    // Detail
-    public static final String LAT_LONG = "latlong";
+    // Detail Constants
     public static final String NAME = "name";
     public static final String CATEGORY = "category";
     public static final String RATING = "rating";

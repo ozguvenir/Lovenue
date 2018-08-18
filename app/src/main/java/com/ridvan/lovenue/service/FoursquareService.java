@@ -1,4 +1,4 @@
-package com.ridvan.lovenue.Service;
+package com.ridvan.lovenue.service;
 
 import com.ridvan.lovenue.models.response.RelevantVenuesResponseModel;
 import com.ridvan.lovenue.models.response.VenueDetailResponseModel;

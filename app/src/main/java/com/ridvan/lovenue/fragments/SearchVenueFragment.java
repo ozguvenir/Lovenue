@@ -1,4 +1,4 @@
-package com.ridvan.lovenue.activities;
+package com.ridvan.lovenue.fragments;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;

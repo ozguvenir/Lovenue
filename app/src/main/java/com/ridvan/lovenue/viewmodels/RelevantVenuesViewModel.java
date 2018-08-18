@@ -4,7 +4,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.support.annotation.NonNull;
 
-import com.ridvan.lovenue.Service.FoursquareService;
+import com.ridvan.lovenue.service.FoursquareService;
 import com.ridvan.lovenue.ServiceContext;
 import com.ridvan.lovenue.constants.LovenueConstants;
 import com.ridvan.lovenue.models.model.Items;
