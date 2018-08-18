@@ -27,4 +27,5 @@ public class LovenueConstants {
     public static final String URL = "url";
     public static final String PHONE = "phone";
     public static final String RATING_COLOR = "ratingColor";
+    public static final String PRICE_TIER = "priceTier";
 }

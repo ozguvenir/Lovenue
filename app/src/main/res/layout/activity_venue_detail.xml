@@ -61,70 +61,89 @@
 
             </LinearLayout>
 
-            <LinearLayout style="@style/GroupStyle">
+
+            <LinearLayout style="@style/LabelValueStyle">
 
                 <TextView
-                    style="@style/HeaderStyle"
-                    android:text="@string/contact_info" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/price_range"
+                    android:textStyle="bold" />
 
-                <LinearLayout style="@style/LabelValueStyle">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical"
+                    android:singleLine="true"
+                    android:text="@={ detailViewModel.priceTier }"
+                    android:textSize="24sp" />
+            </LinearLayout>
+        </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/address"
-                        android:textStyle="bold" />
+        <LinearLayout style="@style/GroupStyle">
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="right|center_vertical"
-                        android:text="@={ detailViewModel.address }" />
-                </LinearLayout>
+            <TextView
+                style="@style/HeaderStyle"
+                android:text="@string/contact_info" />
 
-                <LinearLayout style="@style/LabelValueStyle">
+            <LinearLayout style="@style/LabelValueStyle">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/phone"
-                        android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/address"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/phone"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:autoLink="phone"
-                        android:gravity="right|center_vertical"
-                        android:linksClickable="true"
-                        android:text="@={ detailViewModel.formattedPhoneNumber }"
-                        android:textColorLink="@color/colorPrimaryDark" />
-                </LinearLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical"
+                    android:text="@={ detailViewModel.address }" />
+            </LinearLayout>
 
-                <LinearLayout style="@style/LabelValueStyle">
+            <LinearLayout style="@style/LabelValueStyle">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/url"
-                        android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/phone"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/url"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:autoLink="web"
-                        android:gravity="right|center_vertical"
-                        android:linksClickable="true"
-                        android:text="@={ detailViewModel.url }"
-                        android:textColorLink="@color/colorPrimaryDark" />
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/phone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autoLink="phone"
+                    android:gravity="right|center_vertical"
+                    android:linksClickable="true"
+                    android:text="@={ detailViewModel.formattedPhoneNumber }"
+                    android:textColorLink="@color/colorPrimaryDark" />
+            </LinearLayout>
 
+            <LinearLayout style="@style/LabelValueStyle">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/url"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/url"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autoLink="web"
+                    android:gravity="right|center_vertical"
+                    android:linksClickable="true"
+                    android:text="@={ detailViewModel.url }"
+                    android:textColorLink="@color/colorPrimaryDark" />
             </LinearLayout>
 
         </LinearLayout>
+
     </LinearLayout>
 </layout>

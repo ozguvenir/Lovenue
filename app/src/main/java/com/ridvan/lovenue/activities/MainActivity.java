@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra(LovenueConstants.ADDRESS, venueDetail.getLocation() != null ? venueDetail.getLocation().getAddress() : "");
                     intent.putExtra(LovenueConstants.URL, venueDetail.getUrl() != null ? venueDetail.getUrl() : "");
                     intent.putExtra(LovenueConstants.PHONE, venueDetail.getContact() != null ? venueDetail.getContact().getFormattedPhone() : "");
+                    intent.putExtra(LovenueConstants.PRICE_TIER, venueDetail.getPrice() != null ? venueDetail.getPrice().getTier().toString() : "");
 
                     startActivity(intent);
                 } else {

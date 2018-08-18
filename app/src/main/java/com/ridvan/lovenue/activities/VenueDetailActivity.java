@@ -19,7 +19,7 @@ public class VenueDetailActivity extends AppCompatActivity {
 
     ActivityVenueDetailBinding binding;
     VenueDetailViewModel venueDetailViewModel;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +36,7 @@ public class VenueDetailActivity extends AppCompatActivity {
         String address = getIntent().getStringExtra(LovenueConstants.ADDRESS);
         String url = getIntent().getStringExtra(LovenueConstants.URL);
         String phone = getIntent().getStringExtra(LovenueConstants.PHONE);
+        String priceTier = getIntent().getStringExtra(LovenueConstants.PRICE_TIER);
 
         if (ratingColor != null) {
             binding.rating.setTextColor(Color.parseColor("#" + ratingColor));
@@ -44,6 +45,6 @@ public class VenueDetailActivity extends AppCompatActivity {
         binding.url.setMovementMethod(LinkMovementMethod.getInstance());
         binding.phone.setMovementMethod(LinkMovementMethod.getInstance());
 
-        venueDetailViewModel.setDetail(name, category, rating, address, url, phone);
+        venueDetailViewModel.setDetail(name, category, rating, address, url, phone, priceTier);
     }
 }

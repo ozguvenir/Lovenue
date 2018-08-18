@@ -13,14 +13,16 @@ public class VenueDetailViewModel extends ViewModel {
     private MutableLiveData<String> address = new MutableLiveData<>();
     private MutableLiveData<String> url = new MutableLiveData<>();
     private MutableLiveData<String> formattedPhoneNumber = new MutableLiveData<>();
+    private MutableLiveData<String> priceTier = new MutableLiveData<>();
 
-    public void setDetail(String nameValue, String categoryValue, String ratingValue, String addressValue, String urlValue, String phoneValue) {
+    public void setDetail(String nameValue, String categoryValue, String ratingValue, String addressValue, String urlValue, String phoneValue, String priceTierValue) {
         name.setValue(nameValue);
         category.setValue(categoryValue);
         rating.setValue(ratingValue);
         address.setValue(addressValue);
         url.setValue(urlValue);
         formattedPhoneNumber.setValue(phoneValue);
+        priceTier.setValue(priceTierValue);
     }
 
     public MutableLiveData<String> getName() {
@@ -45,5 +47,9 @@ public class VenueDetailViewModel extends ViewModel {
 
     public MutableLiveData<String> getFormattedPhoneNumber() {
         return formattedPhoneNumber;
+    }
+
+    public MutableLiveData<String> getPriceTier() {
+        return priceTier;
     }
 }
