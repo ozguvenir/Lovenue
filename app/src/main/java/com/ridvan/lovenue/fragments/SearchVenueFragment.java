@@ -65,6 +65,20 @@ public class SearchVenueFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        this.clearFragment();
         searchViewModel.getIsSearchFragmentVisible().setValue(false);
+    }
+
+    public void clearFragment() {
+        searchViewModel.getSortByDistance().setValue(false);
+        searchViewModel.getNearMe().setValue(false);
+        searchViewModel.getLocationInput().setValue(null);
+        searchViewModel.getRadiusInput().setValue(null);
+        searchViewModel.getSectionInput().setValue(null);
+        searchViewModel.getPriceOne().setValue(false);
+        searchViewModel.getPriceTwo().setValue(false);
+        searchViewModel.getPriceThree().setValue(false);
+        searchViewModel.getPriceFour().setValue(false);
+        searchViewModel.getOpenNow().setValue(false);
     }
 }
