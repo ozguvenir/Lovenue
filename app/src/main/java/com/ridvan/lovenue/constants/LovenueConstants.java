@@ -24,5 +24,7 @@ public class LovenueConstants {
     public static final String CATEGORY = "category";
     public static final String RATING = "rating";
     public static final String ADDRESS = "address";
+    public static final String URL = "url";
     public static final String PHONE = "phone";
+    public static final String RATING_COLOR = "ratingColor";
 }

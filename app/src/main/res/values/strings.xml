@@ -23,5 +23,6 @@
     <string name="rating">Rating</string>
     <string name="price">Price Range</string>
     <string name="phone">Phone</string>
+    <string name="url">Web Site</string>
     <string name="ok">OK</string>
 </resources>

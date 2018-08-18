@@ -77,8 +77,10 @@ public class MainActivity extends AppCompatActivity {
 
                     intent.putExtra(LovenueConstants.NAME, venueDetail.getName() != null ? venueDetail.getName() : "Unknown Company");
                     intent.putExtra(LovenueConstants.CATEGORY, venueDetail.getCategories() != null ? venueDetail.getCategories().get(0).getPluralName() : "Unknown Category");
-                    intent.putExtra(LovenueConstants.RATING, venueDetail.getRating() != null ? venueDetail.getRating() : "?");
+                    intent.putExtra(LovenueConstants.RATING, venueDetail.getRating() != null ? venueDetail.getRating().toString() : "?");
+                    intent.putExtra(LovenueConstants.RATING_COLOR, venueDetail.getRatingColor() != null ? venueDetail.getRatingColor() : "?");
                     intent.putExtra(LovenueConstants.ADDRESS, venueDetail.getLocation() != null ? venueDetail.getLocation().getAddress() : "");
+                    intent.putExtra(LovenueConstants.URL, venueDetail.getUrl() != null ? venueDetail.getUrl() : "");
                     intent.putExtra(LovenueConstants.PHONE, venueDetail.getContact() != null ? venueDetail.getContact().getFormattedPhone() : "");
 
                     startActivity(intent);
